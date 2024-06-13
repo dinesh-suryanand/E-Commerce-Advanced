@@ -1,5 +1,8 @@
 # E-Commerce-Advanced
 
+## Version 0.0.3
+- added customer-service
+
 ## Version 0.0.2
 - added discovery-client
 
