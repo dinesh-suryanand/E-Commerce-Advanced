@@ -1,7 +1,7 @@
-package com.dinesh.ecustomer.handler;
+package com.dinesh.eproduct.handler;
 
-import com.dinesh.ecustomer.exception.CustomerNotFoundException;
-import org.springframework.http.HttpStatus;
+import com.dinesh.eproduct.exception.ProductPurchaseException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,14 +10,23 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(CustomerNotFoundException.class)
-    public ResponseEntity<String> handle (CustomerNotFoundException ex) {
+    @ExceptionHandler(ProductPurchaseException.class)
+    public ResponseEntity<String> handle (ProductPurchaseException ex) {
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(ex.getMsg());
+                .status(BAD_REQUEST)
+                .body(ex.getMessage());
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<String> handle (EntityNotFoundException ex) {
+        return ResponseEntity
+                .status(BAD_REQUEST)
+                .body(ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -30,7 +39,7 @@ public class GlobalExceptionHandler {
                     errors.put(fieldsName,errorMessage);
                 });
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(BAD_REQUEST)
                 .body(new CustomErrorResponse(errors));
     }
 }
