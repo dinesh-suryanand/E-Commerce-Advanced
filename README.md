@@ -1,5 +1,8 @@
 # E-Commerce-Advanced
 
+## Version 0.0.5
+- added order-service , RestTemplate,FeignClient ,kafka-zookeeper , need to implement payments service. 
+
 ## Version 0.0.4
 - added product-service , flyway-configuration, inserting test data and checking data is populated or not
 
