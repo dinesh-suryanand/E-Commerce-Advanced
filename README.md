@@ -1,5 +1,8 @@
 # E-Commerce-Advanced
 
+## Version 0.0.7
+- added notification-service , kafka consumer, thymeleaf , Java Mail sender
+
 ## Version 0.0.6
 - added payments-service , finalizing order service
 
