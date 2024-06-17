@@ -4,6 +4,8 @@ import com.dinesh.eorder.customer.CustomerClient;
 import com.dinesh.eorder.exception.BusinessException;
 import com.dinesh.eorder.kafka.OrderConfirmation;
 import com.dinesh.eorder.kafka.OrderProducer;
+import com.dinesh.eorder.order.payment.PaymentClient;
+import com.dinesh.eorder.order.payment.PaymentRequest;
 import com.dinesh.eorder.orderline.OrderLineRequest;
 import com.dinesh.eorder.orderline.OrderLineService;
 import com.dinesh.eorder.product.ProductClient;
@@ -22,7 +24,7 @@ public class OrderService {
     private final OrderRepository repository;
     private final OrderMapper mapper;
     private final CustomerClient customerClient;
-//    private final PaymentClient paymentClient;
+    private final PaymentClient paymentClient;
     private final ProductClient productClient;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
@@ -52,15 +54,14 @@ public class OrderService {
             );
         }
         //5 todo start payment
-
-//        var paymentRequest = new PaymentRequest(
-//                request.amount(),
-//                request.paymentMethod(),
-//                order.getId(),
-//                order.getReference(),
-//                customer
-//        );
-//        paymentClient.requestOrderPayment(paymentRequest);
+        var paymentRequest = new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+        paymentClient.requestOrderPayment(paymentRequest);
 
         //6 send the order confirmation --> notification-ms (kafka)
         orderProducer.sendOrderConfirmation(

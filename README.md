@@ -1,5 +1,8 @@
 # E-Commerce-Advanced
 
+## Version 0.0.6
+- added payments-service , finalizing order service
+
 ## Version 0.0.5
 - added order-service , RestTemplate,FeignClient ,kafka-zookeeper , need to implement payments service. 
 
