@@ -20,3 +20,5 @@
 
 ## Version 0.0.1
 - added docker-compose and config server
+
+commit form idx on 0.0.8 version
