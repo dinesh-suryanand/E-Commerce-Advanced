@@ -1,6 +1,6 @@
 # E-Commerce-Advanced
 
-## Version 0.0.7
+## Version 0.0.8/9
 - added Gateway- micro service, zipkin
 
 ## Version 0.0.7
